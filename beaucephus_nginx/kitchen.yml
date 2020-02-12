@@ -1,0 +1,28 @@
+---
+driver:
+  name: dokken
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: centos-7
+    driver:
+      image: dokken/centos-7
+      privileged: true
+      pid_one_command: /usr/lib/systemd/systemd
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup:ro # required by systemd
+
+suites:
+  - name: default
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
