@@ -128,6 +128,13 @@ default recipe. Open the file at `recipes/default.rb` and replace the contents w
 nginx_install 'epel'
 ```
 
+Newer versions of Chef require us to update our Policyfile if we add a dependency. Since we've added nginx as a
+dependency, we need to update our Policyfile using the following command.
+
+```
+chef update
+```
+
 ### Watch the tests pass (with fingers crossed)
 
 Lets deploy, run, and test our cookbook again.
