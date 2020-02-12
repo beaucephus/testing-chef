@@ -15,6 +15,9 @@ We'll need Docker and the Chef Workstation (previously Chef Development Kit) to 
 instructions on the respective tool's website or use our package manager of choice to install these tools in our
 development environment.
 
+In addition, this example using several reference files from the `beaucephus_nginx` cookbook in this repository. We'll
+clone this repository to our development environment to access those files.
+
 ## Create the cookbook
 
 The cookbook is a grouping of directories, metadata, and Chef code that the Chef run-time will load, interpret, and
