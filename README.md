@@ -18,7 +18,7 @@ development environment.
 ## Create the cookbook
 
 The cookbook is a grouping of directories, metadata, and Chef code that the Chef run-time will load, interpret, and
-execute. We'll start by generating a new empty cookbook using standard naming conventions, usually "<company>_<tool>".
+execute. We'll start by generating a new empty cookbook using standard naming conventions, usually "\<company\>_\<tool\>".
 This cookbook is going to install nginx using the nginx community cookbook. This pattern of wrapping a community
 cookbook with our organization-specific cookbook is very common in the Chef community. We generate a new cookbook with
 the Chef Workstation command `chef`.
