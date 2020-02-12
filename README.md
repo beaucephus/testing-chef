@@ -99,7 +99,8 @@ Lets deploy and run our cookbook, then run the test using the following commands
 ```
 kitchen converge
 ```
-```kitchen verify
+```
+kitchen verify
 ```
 
 We should see in the output that the test failed since we haven't written the code yet that will install nginx.
