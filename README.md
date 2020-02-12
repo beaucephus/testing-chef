@@ -149,7 +149,7 @@ configurations to our heart's or company's content using TDD best practices.
 ## Next Steps
 
 Our next step is to create a Continuous Integration pipeline for our cookbook. Thankfully Test Kitchen makes the build
-and test stages of our pipeline as simple as running
+and test stages of our pipeline as simple as running the following
 
 ```
 kitchen converge
