@@ -84,7 +84,7 @@ worker numbers, etc... later, but for now we'll start simple.
 Open the `test/integration/default/default_test.rb` file and replace the existing contents
 with the contents below.
 
-```
+```ruby
 describe port(80) do
   it { should be_listening }
 end
@@ -117,14 +117,14 @@ One of the best features of using Chef is the vast repository of community-maint
 configure something, anything, chances are there's already a community cookbook for it. We'll include the nginx
 community cookbook by declaring it as a dependency in our metadata.rb file. Add the following line to metadata.rb.
 
-```
+```ruby
 depends 'nginx'
 ```
 
 Since we're using the nginx community cookbook we can simply include the install resource from that cookbook in our
 default recipe. Open the file at `recipes/default.rb` and replace the contents with the line below.
 
-```
+```ruby
 nginx_install 'epel'
 ```
 
