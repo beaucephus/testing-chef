@@ -115,7 +115,7 @@ depends 'nginx'
 ```
 
 Since we're using the nginx community cookbook we can simply include the install resource from that cookbook in our
-default recipe.
+default recipe. Open the file at `recipes/default.rb` and replace the contents with the line below.
 
 ```
 nginx_install 'epel'
