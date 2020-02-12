@@ -25,10 +25,13 @@ the Chef Workstation command `chef`.
 
 #### Note: Use a different company name for the sake of this example.
 
-`chef generate cookbook beaucephus_nginx`
+```
+chef generate cookbook beaucephus_nginx
+```
 
-This generates the scaffolding for us to begin our work in. Now, before we write any Chef code to install and
-configure nginx, we want to finish setting up our test environment and write some tests.
+This generates the scaffolding, all the directories, metadata, and files that we need to author a cookbook. However,
+before we write any Chef code to install and configure nginx, we should finish setting up our test environment and
+write some tests.
 
 ## Spin up the environment
 
@@ -40,8 +43,8 @@ environment in which to run our code.
 
 The main configuration file for Test Kitchen is the kitchen.yml, and there is plenty to unpack in this file that we
 won't get into in this example. For now, we'll simply copy the kitchen.yml from the `beaucephus_nginx` cookbook into the
-root directory of our cookbook. We should now be able to run `kitchen list` to view the instances that we have
-configured to use.
+root directory of our cookbook. Afterward, we should now be able to use `kitchen list` to view the instances that we
+have available to spin up.
 
 ```
 $ kitchen list
@@ -53,21 +56,25 @@ default-centos-7  Dokken  Dokken       Inspec    Dokken     Created      <None>
 
 Now lets spin up our centos instance with the following command.
 
-`kitchen create`
+```
+kitchen create
+```
 
 This might take a few moments as the necessary files are downloaded from the Docker community hub. They'll be cached
 locally so that subsequent runs will finish much faster. Once finished you can log into your container over SSH and
 verify every thing looks good with the following command.
 
-`kitchen login`
+```
+kitchen login
+```
 
 Very cool! This is the equivalent of attaching to your container using `docker run` to run an interactive shell.
 
 ## Test-driven development
 
-It's time to write and run some tests for our Chef code. We know we're going to install nginx. To get started we'll
-probably want it to serve on port 80 over HTTP. We can always add other configurations like HTTPS, keep alive, worker
-numbers, etc... later.
+It's time to write and run some tests for our Chef code. We know we're going to install nginx, and just to get started
+we'll probably want it to bind and listen on port 80. We can always add other configurations like HTTPS, keep alive,
+worker numbers, etc... later, but for now we'll start simple.
 
 ### Write the tests
 
@@ -103,19 +110,27 @@ One of the best features of using Chef is the vast repository of community-maint
 configure something, anything, chances are there's already a community cookbook for it. We'll include the nginx
 community cookbook by declaring it as a dependency in our metadata.rb file. Add the following line to metadata.rb.
 
-`depends 'nginx'`
+```
+depends 'nginx'
+```
 
 Since we're using the nginx community cookbook we can simply include the install resource from that cookbook in our
 default recipe.
 
-`nginx_install 'epel'`
+```
+nginx_install 'epel'
+```
 
 ### Watch the tests pass (with fingers crossed)
 
 Lets deploy, run, and test our cookbook again.
 
-`kitchen converge`
-`kitchen verify`
+```
+kitchen converge
+```
+```
+kitchen verify
+```
 
 This time you should see the state of your container change. Chef is installing and starting up nginx with a basic set
 of configurations. Also the tests should pass.
@@ -136,11 +151,15 @@ configurations to our heart's or company's content using TDD best practices.
 Our next step is to create a Continuous Integration pipeline for our cookbook. Thankfully Test Kitchen makes the build
 and test stages of our pipeline as simple as running
 
-`kitchen converge`
+```
+kitchen converge
+```
 
 and
 
-`kitchen verify`
+```
+kitchen verify
+```
 
 respectively.
 
